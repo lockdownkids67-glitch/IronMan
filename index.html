@@ -1,0 +1,1096 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Arduino Academy | Learn Electronics</title>
+
+<style>
+:root {
+    --bg: #08111b;
+    --panel: #111f2e;
+    --panel2: #172a3a;
+    --green: #00e6a0;
+    --blue: #42b7ff;
+    --text: #edf5ff;
+    --muted: #a8bacb;
+}
+
+* {
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+}
+
+header {
+    padding: 35px 20px;
+    text-align: center;
+    background: linear-gradient(135deg, #063d3c, #102b43);
+    border-bottom: 2px solid var(--green);
+}
+
+header h1 {
+    color: var(--green);
+    font-size: clamp(30px, 6vw, 48px);
+    margin: 0;
+}
+
+header p {
+    color: var(--muted);
+}
+
+nav {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px;
+    background: #0c1925;
+    border-bottom: 1px solid #263b4e;
+}
+
+nav a {
+    color: var(--green);
+    text-decoration: none;
+    padding: 7px 10px;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+nav a:hover {
+    background: var(--panel2);
+}
+
+.container {
+    width: min(1050px, 92%);
+    margin: auto;
+}
+
+.hero {
+    padding: 45px 10px;
+    text-align: center;
+}
+
+.hero h2 {
+    font-size: 32px;
+}
+
+.hero p {
+    color: var(--muted);
+}
+
+.button {
+    display: inline-block;
+    background: var(--green);
+    color: #07131a;
+    padding: 12px 20px;
+    margin: 8px;
+    border-radius: 7px;
+    text-decoration: none;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+}
+
+.card {
+    background: var(--panel);
+    border: 1px solid #263c50;
+    border-radius: 12px;
+    padding: 24px;
+    margin: 22px 0;
+    scroll-margin-top: 100px;
+}
+
+h2, h3 {
+    color: var(--green);
+}
+
+h2 {
+    border-bottom: 1px solid #294353;
+    padding-bottom: 10px;
+}
+
+h3 {
+    color: var(--blue);
+}
+
+p, li {
+    color: #d8e5f0;
+}
+
+.highlight {
+    background: #0b302d;
+    border-left: 4px solid var(--green);
+    padding: 14px;
+    border-radius: 5px;
+}
+
+code, pre {
+    font-family: Consolas, monospace;
+}
+
+pre {
+    background: #050b11;
+    padding: 18px;
+    border-radius: 8px;
+    border: 1px solid #294353;
+    overflow-x: auto;
+    color: #a8ffcf;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 15px;
+}
+
+.tile {
+    background: var(--panel2);
+    padding: 17px;
+    border-radius: 9px;
+}
+
+.tile h3 {
+    margin-top: 0;
+}
+
+input[type="search"] {
+    width: 100%;
+    padding: 13px;
+    border-radius: 8px;
+    border: 1px solid #496176;
+    background: #07121c;
+    color: white;
+    margin: 12px 0;
+}
+
+.quiz-option {
+    display: block;
+    width: 100%;
+    text-align: left;
+    margin: 8px 0;
+    padding: 12px;
+    border-radius: 7px;
+    background: var(--panel2);
+    color: white;
+    border: 1px solid #385166;
+    cursor: pointer;
+}
+
+.quiz-option:hover {
+    border-color: var(--green);
+}
+
+#quiz-result {
+    font-weight: bold;
+    margin-top: 15px;
+}
+
+footer {
+    text-align: center;
+    padding: 30px;
+    margin-top: 40px;
+    background: #0c1925;
+    color: var(--muted);
+}
+
+.small {
+    color: var(--muted);
+    font-size: 14px;
+}
+
+@media(max-width: 600px) {
+    .card {
+        padding: 17px;
+    }
+
+    nav a {
+        font-size: 12px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>⚡ ARDUINO ACADEMY</h1>
+    <p>Understand Electronics. Learn Programming. Build Anything.</p>
+</header>
+
+<nav>
+    <a href="#home">Home</a>
+    <a href="#electronics">Electronics</a>
+    <a href="#uno">Arduino Uno</a>
+    <a href="#ide">Arduino IDE</a>
+    <a href="#coding">Coding</a>
+    <a href="#led">First Project</a>
+    <a href="#components">Components</a>
+    <a href="#projects">Projects</a>
+    <a href="#quiz">Quiz</a>
+</nav>
+
+<div class="container">
+
+<section class="hero" id="home">
+    <h2>Welcome to Arduino Academy 🚀</h2>
+    <p>
+        Start from absolute zero and gradually learn electronics,
+        Arduino hardware, programming, sensors and real-world projects.
+    </p>
+
+    <a class="button" href="#electronics">Start Learning</a>
+    <a class="button" href="#projects">Explore Projects</a>
+</section>
+
+<section class="card">
+    <h2>🔎 Find a Lesson</h2>
+
+    <input
+        type="search"
+        id="lessonSearch"
+        placeholder="Search Arduino, voltage, LED, sensors..."
+        oninput="searchLessons()"
+        aria-label="Search lessons">
+
+    <p class="small">
+        Search for a topic to find matching lessons on this page.
+    </p>
+</section>
+
+<section class="card" id="electronics">
+    <h2>1. Electronics from Zero</h2>
+
+    <h3>What is electronics?</h3>
+
+    <p>
+        Electronics is the study of controlling electrical energy
+        using components such as resistors, LEDs, transistors,
+        sensors and integrated circuits.
+    </p>
+
+    <h3>What is electric current?</h3>
+
+    <p>
+        Electric current is the rate at which electric charge flows
+        through a circuit. Its unit is the ampere (A).
+    </p>
+
+    <h3>What is voltage?</h3>
+
+    <p>
+        Voltage is the electrical potential difference between
+        two points. It is measured in volts (V).
+    </p>
+
+    <h3>What is resistance?</h3>
+
+    <p>
+        Resistance opposes the flow of electric current.
+        It is measured in ohms (Ω).
+    </p>
+
+    <h3>Ohm's Law</h3>
+
+    <div class="highlight">
+        <strong>V = I × R</strong>
+        <p>Voltage = Current × Resistance</p>
+    </div>
+
+    <p>Example:</p>
+
+    <p>
+        If a resistor is 100 Ω and the current is 0.02 A,
+        the voltage across it is:
+    </p>
+
+    <pre>V = I × R
+V = 0.02 × 100
+V = 2 volts</pre>
+
+    <h3>What is a circuit?</h3>
+
+    <p>
+        A circuit is a path through which electric current can flow.
+        A simple circuit may contain a power source, connecting wires,
+        a resistor and an LED.
+    </p>
+
+    <h3>What is GND?</h3>
+
+    <p>
+        GND means ground. In many low-voltage circuits, it is used
+        as the reference point for measuring voltage and as the
+        return connection for current.
+    </p>
+</section>
+
+<section class="card" id="uno">
+    <h2>2. Arduino Uno R3 Explained</h2>
+
+    <h3>What is Arduino?</h3>
+
+    <p>
+        Arduino is an open-source electronics platform.
+        The Arduino Uno R3 is a development board based on the
+        ATmega328P microcontroller.
+    </p>
+
+    <p>
+        You write a program on your computer, upload it to the board,
+        and the microcontroller executes the instructions.
+    </p>
+
+    <h3>Major components of Arduino Uno R3</h3>
+
+    <div class="grid">
+
+        <div class="tile">
+            <h3>🧠 ATmega328P</h3>
+            <p>
+                The main microcontroller. It executes your program,
+                reads inputs and controls outputs.
+            </p>
+        </div>
+
+        <div class="tile">
+            <h3>🔌 USB Port</h3>
+            <p>
+                Connects the board to a computer for programming
+                and serial communication. It can also provide power.
+            </p>
+        </div>
+
+        <div class="tile">
+            <h3>⚡ Power Connector</h3>
+            <p>
+                Allows the board to receive power from a suitable
+                external DC power supply.
+            </p>
+        </div>
+
+        <div class="tile">
+            <h3>🔢 Digital Pins</h3>
+            <p>
+                Pins 0–13 can be used for digital input or output.
+                Pins 0 and 1 also serve serial communication.
+            </p>
+        </div>
+
+        <div class="tile">
+            <h3>📈 Analog Inputs</h3>
+            <p>
+                A0–A5 can measure analog voltages using the
+                microcontroller's analog-to-digital converter.
+            </p>
+        </div>
+
+        <div class="tile">
+            <h3>〰️ PWM Pins</h3>
+            <p>
+                Pins 3, 5, 6, 9, 10 and 11 support PWM output,
+                useful for controlling LED brightness and motor drivers.
+            </p>
+        </div>
+
+        <div class="tile">
+            <h3>🔋 Power Pins</h3>
+            <p>
+                The board provides 5V, 3.3V, GND, VIN and other
+                power-related connections.
+            </p>
+        </div>
+
+        <div class="tile">
+            <h3>🔄 Reset Button</h3>
+            <p>
+                Restarts program execution. It does not normally
+                erase the program stored in flash memory.
+            </p>
+        </div>
+
+        <div class="tile">
+            <h3>⏱️ Clock</h3>
+            <p>
+                The Uno R3 uses a 16 MHz clock source to provide
+                timing for microcontroller operations.
+            </p>
+        </div>
+
+        <div class="tile">
+            <h3>🔗 ICSP Header</h3>
+            <p>
+                Provides SPI-related connections and can be used
+                for programming the microcontroller with suitable tools.
+            </p>
+        </div>
+
+    </div>
+
+    <h3>How does Arduino actually work?</h3>
+
+    <ol>
+        <li>You write code on a computer.</li>
+        <li>The Arduino IDE compiles the code.</li>
+        <li>The compiled program is uploaded to the board.</li>
+        <li>The microcontroller stores the program in flash memory.</li>
+        <li>After startup, the program begins executing.</li>
+        <li>It reads inputs and changes outputs according to the code.</li>
+    </ol>
+
+    <div class="highlight">
+        <strong>Important:</strong>
+        The ATmega328P executes machine instructions, not the
+        original human-readable C++ source code directly.
+    </div>
+
+    <h3>How does Arduino communicate with the computer?</h3>
+
+    <p>
+        When you upload a sketch, the Arduino IDE compiles it and
+        transfers the program through the USB connection.
+        On a typical Uno R3, a separate USB interface communicates
+        with the computer and connects to the microcontroller's
+        serial programming interface.
+    </p>
+
+    <h3>Digital versus analog input</h3>
+
+    <p>
+        A digital input detects a HIGH or LOW logic level.
+        An analog input measures a voltage and converts it into
+        a numerical reading.
+    </p>
+
+    <p>
+        On the classic Uno R3, the ADC is 10-bit, so analogRead()
+        normally returns a number from 0 to 1023.
+    </p>
+</section>
+
+<section class="card" id="ide">
+    <h2>3. Arduino IDE</h2>
+
+    <p>
+        The Arduino IDE is the software used to write, compile,
+        and upload Arduino programs.
+    </p>
+
+    <h3>How to start</h3>
+
+    <ol>
+        <li>Install the Arduino IDE on your computer.</li>
+        <li>Connect the Arduino Uno using a suitable USB cable.</li>
+        <li>Open the Arduino IDE.</li>
+        <li>Select Arduino Uno as the board.</li>
+        <li>Select the correct serial port.</li>
+        <li>Write or open a sketch.</li>
+        <li>Click Verify to compile the sketch.</li>
+        <li>Click Upload to transfer it to the board.</li>
+    </ol>
+
+    <p>
+        During uploading, the IDE compiles your source code into
+        machine code and transfers the resulting program to the board.
+    </p>
+
+    <p>
+        <a class="button"
+           href="https://www.arduino.cc/en/software"
+           target="_blank"
+           rel="noopener">
+           Get Arduino IDE
+        </a>
+    </p>
+</section>
+
+<section class="card" id="coding">
+    <h2>4. Arduino Programming Basics</h2>
+
+    <h3>The basic program structure</h3>
+
+    <pre>void setup() {
+    // Runs once after startup or reset
+}
+
+void loop() {
+    // Runs repeatedly
+}</pre>
+
+    <h3>What does setup() do?</h3>
+
+    <p>
+        setup() runs once when the program starts or the board resets.
+        It is commonly used to configure pins and start communication.
+    </p>
+
+    <h3>What does loop() do?</h3>
+
+    <p>
+        loop() runs repeatedly after setup() finishes.
+        It contains the actions that your program repeats.
+    </p>
+
+    <h3>pinMode()</h3>
+
+    <pre>pinMode(7, OUTPUT);</pre>
+
+    <p>
+        This configures digital pin 7 as an output.
+        The microcontroller can then control its output logic level.
+    </p>
+
+    <h3>digitalWrite()</h3>
+
+    <pre>digitalWrite(7, HIGH);
+digitalWrite(7, LOW);</pre>
+
+    <p>
+        HIGH sets the pin to its high logic level;
+        LOW sets it to its low logic level.
+        On the Uno R3, these are nominally 5V and 0V,
+        respectively, under normal conditions.
+    </p>
+
+    <h3>delay()</h3>
+
+    <pre>delay(1000);</pre>
+
+    <p>
+        This pauses normal sketch execution for approximately
+        1000 milliseconds, which is one second.
+    </p>
+
+    <h3>Variables</h3>
+
+    <pre>int ledPin = 7;
+int waitingTime = 1000;</pre>
+
+    <p>
+        Variables store values that your program can use.
+        Here, ledPin stores 7 and waitingTime stores 1000.
+    </p>
+
+    <h3>Conditions</h3>
+
+    <pre>if (sensorValue > 500) {
+    digitalWrite(7, HIGH);
+} else {
+    digitalWrite(7, LOW);
+}</pre>
+
+    <p>
+        An if statement allows the program to make a decision
+        based on a condition.
+    </p>
+
+    <h3>Loops</h3>
+
+    <pre>for (int i = 0; i < 5; i++) {
+    // This block repeats five times
+}</pre>
+
+    <p>
+        A for loop repeats a block of code according to its
+        initialization, condition and update expression.
+    </p>
+</section>
+
+<section class="card" id="led">
+    <h2>5. First Project: LED Blinking</h2>
+
+    <p>
+        Goal: make an external LED switch on for one second
+        and off for one second.
+    </p>
+
+    <h3>Components required</h3>
+
+    <ul>
+        <li>Arduino Uno R3</li>
+        <li>One LED</li>
+        <li>One 330Ω resistor</li>
+        <li>Breadboard</li>
+        <li>Jumper wires</li>
+        <li>USB cable</li>
+    </ul>
+
+    <h3>Wiring table</h3>
+
+    <table style="width:100%;border-collapse:collapse;text-align:left">
+        <tr style="background:#172a3a">
+            <th style="padding:10px;border:1px solid #385166">Connection</th>
+            <th style="padding:10px;border:1px solid #385166">Connect to</th>
+        </tr>
+        <tr>
+            <td style="padding:10px;border:1px solid #385166">Arduino pin 7</td>
+            <td style="padding:10px;border:1px solid #385166">LED anode (+)</td>
+        </tr>
+        <tr>
+            <td style="padding:10px;border:1px solid #385166">LED cathode (-)</td>
+            <td style="padding:10px;border:1px solid #385166">330Ω resistor</td>
+        </tr>
+        <tr>
+            <td style="padding:10px;border:1px solid #385166">Other end of resistor</td>
+            <td style="padding:10px;border:1px solid #385166">Arduino GND</td>
+        </tr>
+    </table>
+
+    <p class="small">
+        Keep the resistor in series with the LED. Disconnect power
+        before changing wiring.
+    </p>
+
+    <h3>Complete code</h3>
+
+    <pre>void setup() {
+    pinMode(7, OUTPUT);
+}
+
+void loop() {
+    digitalWrite(7, HIGH);
+    delay(1000);
+
+    digitalWrite(7, LOW);
+    delay(1000);
+}</pre>
+
+    <h3>Line-by-line explanation</h3>
+
+    <ol>
+        <li><code>void setup()</code> begins the initialization function.</li>
+        <li><code>pinMode(7, OUTPUT)</code> configures pin 7 as an output.</li>
+        <li><code>void loop()</code> begins the repeating function.</li>
+        <li><code>digitalWrite(7, HIGH)</code> sets pin 7 HIGH.</li>
+        <li><code>delay(1000)</code> waits approximately one second.</li>
+        <li><code>digitalWrite(7, LOW)</code> sets pin 7 LOW.</li>
+        <li>The second delay keeps the LED off for approximately one second.</li>
+        <li>The loop repeats, so the LED keeps blinking.</li>
+    </ol>
+
+    <h3>What happens electrically?</h3>
+
+    <p>
+        When pin 7 is HIGH, current can flow from the output pin
+        through the LED and resistor to GND. The LED emits light.
+        When pin 7 becomes LOW, the voltage across the series
+        circuit falls and the LED turns off.
+    </p>
+
+    <h3>Experiment</h3>
+
+    <ul>
+        <li>Change delay(1000) to delay(500).</li>
+        <li>Observe how the timing changes.</li>
+        <li>Try changing the LED pin number in both the wiring and code.</li>
+    </ul>
+</section>
+
+<section class="card" id="components">
+    <h2>6. Electronic Components</h2>
+
+    <div class="grid">
+
+        <div class="tile">
+            <h3>💡 LED</h3>
+            <p>
+                A light-emitting diode converts electrical energy
+                into light. Polarity matters.
+            </p>
+        </div>
+
+        <div class="tile">
+            <h3>〰️ Resistor</h3>
+            <p>
+                Limits current and creates voltage drops.
+                Its resistance is measured in ohms.
+            </p>
+        </div>
+
+        <div class="tile">
+            <h3>🔘 Push Button</h3>
+            <p>
+                A switch that opens or closes an electrical connection.
+            </p>
+        </div>
+
+        <div class="tile">
+            <h3>🌞 LDR</h3>
+            <p>
+                A light-dependent resistor changes resistance
+                according to the amount of light it receives.
+            </p>
+        </div>
+
+        <div class="tile">
+            <h3>🌡️ DHT11</h3>
+            <p>
+                A digital sensor that measures temperature
+                and relative humidity.
+            </p>
+        </div>
+
+        <div class="tile">
+            <h3>📏 Ultrasonic Sensor</h3>
+            <p>
+                Sends ultrasonic pulses and measures their return
+                time to estimate distance.
+            </p>
+        </div>
+
+        <div class="tile">
+            <h3>🔔 Buzzer</h3>
+            <p>
+                Produces sound when driven according to its type
+                and electrical requirements.
+            </p>
+        </div>
+
+        <div class="tile">
+            <h3>🔄 Servo Motor</h3>
+            <p>
+                Uses control signals and internal feedback
+                to move towards a target position.
+            </p>
+        </div>
+
+    </div>
+
+    <h3>Important principle</h3>
+
+    <p>
+        Arduino pins are designed for low-current signals.
+        Motors and other high-current loads generally require
+        suitable driver circuits and an appropriate power supply.
+    </p>
+</section>
+
+<section class="card" id="projects">
+    <h2>7. Arduino Project Roadmap</h2>
+
+    <div class="grid">
+
+        <div class="tile">
+            <h3>Level 1: Beginner</h3>
+            <ul>
+                <li>Blinking LED</li>
+                <li>Traffic lights</li>
+                <li>Button-controlled LED</li>
+                <li>Buzzer alarm</li>
+            </ul>
+        </div>
+
+        <div class="tile">
+            <h3>Level 2: Sensors</h3>
+            <ul>
+                <li>Automatic night light</li>
+                <li>Temperature monitor</li>
+                <li>Distance meter</li>
+                <li>Light-level display</li>
+            </ul>
+        </div>
+
+        <div class="tile">
+            <h3>Level 3: Intermediate</h3>
+            <ul>
+                <li>LCD information display</li>
+                <li>Servo control</li>
+                <li>Multi-sensor alarm</li>
+                <li>Automatic plant watering</li>
+            </ul>
+        </div>
+
+        <div class="tile">
+            <h3>Level 4: Advanced</h3>
+            <ul>
+                <li>Wireless telemetry</li>
+                <li>Sensor monitoring station</li>
+                <li>Data logging</li>
+                <li>Robotics and automation</li>
+            </ul>
+        </div>
+
+    </div>
+
+    <p>
+        Each project should be studied through its circuit,
+        component specifications, code, working principle,
+        testing and troubleshooting.
+    </p>
+</section>
+
+<section class="card">
+    <h2>8. Common Problems and Solutions</h2>
+
+    <h3>Arduino board not detected</h3>
+    <p>
+        Check the USB cable, USB connection, selected port and
+        any required board drivers.
+    </p>
+
+    <h3>Compilation error</h3>
+    <p>
+        Check spelling, brackets, semicolons, library installation
+        and the complete error message.
+    </p>
+
+    <h3>LED is not glowing</h3>
+    <p>
+        Check LED polarity, resistor connections, GND,
+        pin number and whether the program uploaded successfully.
+    </p>
+
+    <h3>Serial Monitor shows strange characters</h3>
+    <p>
+        Check that the Serial Monitor baud rate matches the
+        baud rate used by Serial.begin() in your program.
+    </p>
+
+    <h3>Board repeatedly restarts</h3>
+    <p>
+        Check the power supply, wiring and whether a connected
+        component is drawing too much current.
+    </p>
+</section>
+
+<section class="card" id="quiz">
+    <h2>9. Test Your Knowledge 🧠</h2>
+
+    <p id="question"></p>
+
+    <div id="options"></div>
+
+    <p id="quiz-result" aria-live="polite"></p>
+
+    <button class="button" onclick="nextQuestion()">
+        Next Question
+    </button>
+</section>
+
+<section class="card">
+    <h2>10. Continue Learning</h2>
+
+    <p>
+        Use the official Arduino documentation to explore
+        programming functions, examples, board specifications
+        and more advanced topics.
+    </p>
+
+    <p>
+        <a class="button"
+           href="https://docs.arduino.cc/"
+           target="_blank"
+           rel="noopener">
+           Arduino Documentation
+        </a>
+    </p>
+
+    <p>
+        <a class="button"
+           href="https://docs.arduino.cc/hardware/uno-rev3/"
+           target="_blank"
+           rel="noopener">
+           Uno R3 Technical Details
+        </a>
+    </p>
+</section>
+
+</div>
+
+<footer>
+    <h3>⚡ Arduino Academy</h3>
+    <p>Learn Electronics • Understand Code • Build Projects</p>
+    <p class="small">
+        Educational resource for Arduino beginners.
+    </p>
+</footer>
+
+<script>
+function searchLessons() {
+    const query = document
+        .getElementById("lessonSearch")
+        .value.toLowerCase();
+
+    const cards = document.querySelectorAll(
+        ".container .card"
+    );
+
+    cards.forEach(card => {
+        if (card.querySelector("#lessonSearch")) return;
+
+        const matches = card.textContent
+            .toLowerCase()
+            .includes(query);
+
+        card.style.display =
+            query === "" || matches ? "" : "none";
+    });
+}
+
+const questions = [
+    {
+        q: "1. Which microcontroller is used in the classic Arduino Uno R3?",
+        options: [
+            "ATmega328P",
+            "ESP8266",
+            "Raspberry Pi",
+            "Intel Core i7"
+        ],
+        answer: 0,
+        explanation: "The classic Uno R3 uses the ATmega328P."
+    },
+    {
+        q: "2. Which function normally runs repeatedly?",
+        options: [
+            "setup()",
+            "loop()",
+            "start()",
+            "compile()"
+        ],
+        answer: 1,
+        explanation: "loop() runs repeatedly after setup() finishes."
+    },
+    {
+        q: "3. What does pinMode(7, OUTPUT) do?",
+        options: [
+            "Reads temperature",
+            "Resets the board",
+            "Configures pin 7 as an output",
+            "Uploads a program"
+        ],
+        answer: 2,
+        explanation: "It configures digital pin 7 as an output."
+    },
+    {
+        q: "4. What is the unit of electrical resistance?",
+        options: [
+            "Volt",
+            "Ampere",
+            "Watt",
+            "Ohm"
+        ],
+        answer: 3,
+        explanation: "Electrical resistance is measured in ohms."
+    },
+    {
+        q: "5. Why is a resistor used with a typical LED?",
+        options: [
+            "To store a program",
+            "To limit current",
+            "To measure temperature",
+            "To increase USB speed"
+        ],
+        answer: 1,
+        explanation: "A series resistor limits current through the LED."
+    },
+    {
+        q: "6. What does delay(1000) mean?",
+        options: [
+            "Wait approximately one second",
+            "Wait one minute",
+            "Read pin 1000",
+            "Stop the board permanently"
+        ],
+        answer: 0,
+        explanation: "The delay argument is measured in milliseconds."
+    }
+];
+
+let questionIndex = 0;
+let score = 0;
+let answered = false;
+
+function showQuestion() {
+    const question = questions[questionIndex];
+
+    document.getElementById("question").textContent =
+        question.q;
+
+    document.getElementById("quiz-result").textContent = "";
+
+    const options = document.getElementById("options");
+    options.innerHTML = "";
+
+    answered = false;
+
+    question.options.forEach((option, index) => {
+        const button = document.createElement("button");
+
+        button.className = "quiz-option";
+        button.textContent = option;
+
+        button.onclick = () => checkAnswer(index);
+
+        options.appendChild(button);
+    });
+}
+
+function checkAnswer(selected) {
+    if (answered) return;
+
+    answered = true;
+
+    const question = questions[questionIndex];
+    const result = document.getElementById("quiz-result");
+
+    if (selected === question.answer) {
+        score++;
+        result.textContent =
+            "Correct! 🎉 " + question.explanation;
+    } else {
+        result.textContent =
+            "Not quite. " + question.explanation;
+    }
+
+    const buttons = document.querySelectorAll(".quiz-option");
+
+    buttons.forEach(button => {
+        button.disabled = true;
+    });
+}
+
+function nextQuestion() {
+    if (!answered) {
+        document.getElementById("quiz-result").textContent =
+            "Choose an answer first.";
+        return;
+    }
+
+    questionIndex++;
+
+    if (questionIndex >= questions.length) {
+        document.getElementById("question").textContent =
+            "Quiz completed! 🎓";
+
+        document.getElementById("options").innerHTML = "";
+
+        document.getElementById("quiz-result").textContent =
+            "Your score: " + score + " / " +
+            questions.length + ". Refresh the page to try again.";
+
+        document.querySelector(
+            "#quiz button"
+        ).style.display = "none";
+
+        return;
+    }
+
+    showQuestion();
+}
+
+showQuestion();
+</script>
+
+</body>
+      </html>
